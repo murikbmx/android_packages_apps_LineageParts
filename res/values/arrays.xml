@@ -507,4 +507,19 @@
         <item>1</item>
         <item>0</item>
     </string-array>
+
+    <!-- Long screenshot maximum length, as a multiple of the screen height -->
+    <string-array name="long_screenshot_length_entries" translatable="false">
+        <item>@string/long_screenshot_length_3</item>
+        <item>@string/long_screenshot_length_6</item>
+        <item>@string/long_screenshot_length_10</item>
+        <item>@string/long_screenshot_length_max</item>
+    </string-array>
+
+    <string-array name="long_screenshot_length_values" translatable="false">
+        <item>3</item>
+        <item>6</item>
+        <item>10</item>
+        <item>100</item>
+    </string-array>
 </resources>

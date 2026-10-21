@@ -93,6 +93,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
             "torch_long_press_power_gesture";
     private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT =
             "torch_long_press_power_timeout";
+    private static final String KEY_LONG_SCREENSHOT_LENGTH = "long_screenshot_length";
+    // Read by SystemUI's ScrollCaptureController as a multiple of the screen height.
+    private static final String SETTING_SCROLL_MAX_PAGES = "screenshot.scroll_max_pages";
+    private static final float LONG_SCREENSHOT_LENGTH_DEFAULT = 3f;
     private static final String KEY_CLICK_PARTIAL_SCREENSHOT =
             "click_partial_screenshot";
     private static final String KEY_SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
@@ -131,6 +135,7 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private SwitchPreferenceCompat mPowerEndCall;
     private SwitchPreferenceCompat mHomeAnswerCall;
     private ListPreference mTorchLongPressPowerTimeout;
+    private ListPreference mLongScreenshotLength;
     private SwitchPreferenceCompat mSwapCapacitiveKeys;
     private SwitchPreferenceCompat mEnableTaskbar;
 
@@ -189,6 +194,11 @@ public class ButtonSettings extends SettingsPreferenceFragment
                 LineageSettings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
         mTorchLongPressPowerTimeout = initList(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT,
                 torchLongPressPowerTimeout);
+
+        // Maximum length of a scrolling (long) screenshot.
+        final int longScreenshotLength = (int) Settings.Secure.getFloat(resolver,
+                SETTING_SCROLL_MAX_PAGES, LONG_SCREENSHOT_LENGTH_DEFAULT);
+        mLongScreenshotLength = initList(KEY_LONG_SCREENSHOT_LENGTH, longScreenshotLength);
 
         // Home button answers calls.
         mHomeAnswerCall = findPreference(KEY_HOME_ANSWER_CALL);
@@ -625,6 +635,13 @@ public class ButtonSettings extends SettingsPreferenceFragment
         } else if (preference == mTorchLongPressPowerTimeout) {
             handleListChange(mTorchLongPressPowerTimeout, newValue,
                     LineageSettings.System.TORCH_LONG_PRESS_POWER_TIMEOUT);
+            return true;
+        } else if (preference == mLongScreenshotLength) {
+            String value = (String) newValue;
+            int index = mLongScreenshotLength.findIndexOfValue(value);
+            mLongScreenshotLength.setSummary(mLongScreenshotLength.getEntries()[index]);
+            Settings.Secure.putFloat(getContentResolver(), SETTING_SCROLL_MAX_PAGES,
+                    Float.parseFloat(value));
             return true;
         } else if (preference == mEdgeLongSwipeAction) {
             handleListChange(mEdgeLongSwipeAction, newValue,

@@ -691,4 +691,13 @@
     <string name="sms_security_check_limit_summary">Apps can send %s messages in 1 minute before requiring confirmation</string>
     <string name="sms_security_check_limit_summary_none">Apps are not allowed to send any messages without confirmation</string>
     <string name="sms_security_check_limit_always_confirm">Always confirm</string>
+
+    <!-- Long screenshot length -->
+    <string name="long_screenshot_length_title">Long screenshot length</string>
+    <string name="long_screenshot_length_summary">Maximum length a scrolling screenshot can capture</string>
+    <string name="long_screenshot_length_3">3 screens (default)</string>
+    <string name="long_screenshot_length_6">6 screens</string>
+    <string name="long_screenshot_length_10">10 screens</string>
+    <string name="long_screenshot_length_max">As long as possible</string>
+    <string name="screenshot_category_title">Screenshot</string>
 </resources>

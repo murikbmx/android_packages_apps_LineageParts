@@ -331,4 +331,19 @@
 
     </PreferenceCategory>
 
+
+    <PreferenceCategory
+        android:key="screenshot_category"
+        android:title="@string/screenshot_category_title">
+
+        <ListPreference
+            android:key="long_screenshot_length"
+            android:title="@string/long_screenshot_length_title"
+            android:summary="@string/long_screenshot_length_summary"
+            android:entries="@array/long_screenshot_length_entries"
+            android:entryValues="@array/long_screenshot_length_values"
+            android:persistent="false" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
